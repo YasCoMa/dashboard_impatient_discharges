@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+    <!-- Plotly library to generate plots -->
+    <script src="https://cdn.plot.ly/plotly-2.16.1.min.js"></script>
+    
+    <!-- Axios Library to perform http requests in JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.min.js" integrity="sha512-OdkysyYNjK4CZHgB+dkw9xQp66hZ9TLqmS2vXaBrftfyJeduVhyy1cOfoxiKdi4/bfgpco6REu6Rb+V2oVIRWg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="api_call.js"></script>
+    
+    <title> Hospital Inpatient Discharges NY dashboard </title>
+    
+    <style >
+        h1{
+            padding-top: 15px;
+            padding-bottom: 20px;
+            text-align: center;
+        }
+        .accordion {
+            margin-bottom: 20px;
+        }
+    </style>
+    
+  </head>
+  
+  <body>
+    
+    <div class="container-fluid">
+    
+        <div class="container">
+        
+            <h1> Hospital Inpatients Discharges in NY </h1>
+            
+            <p> <b>Data source for this analysis:</b> <a href="https://dev.socrata.com/foundry/health.data.ny.gov/gnzp-ekau" target="_blank" >https://dev.socrata.com/foundry/health.data.ny.gov/gnzp-ekau</a> </p>
+            
+            <div class="accordion" id="dataAnalysis">
+            
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="mortality">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Mortality Risks and Age groups
+                  </button>
+                </h2>
+                
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="mortality" data-bs-parent="#dataAnalysis">
+                  <div class="accordion-body">
+                    <mortality-component />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="ethnicGender">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                    Ethnic Group and Gender
+                  </button>
+                </h2>
+                
+                <div id="collapse2" class="accordion-collapse collapse show" aria-labelledby="ethnicGender" data-bs-parent="#dataAnalysis">
+                  <div class="accordion-body">
+                    <ethinicty-component />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="rankingCancerGender">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                    Ranked Cancer type occurrences accross Genders
+                  </button>
+                </h2>
+                
+                <div id="collapse3" class="accordion-collapse collapse show" aria-labelledby="rankingCancerGender" data-bs-parent="#dataAnalysis">
+                  <div class="accordion-body">
+                    <ranking-gender-component />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="rankingCancerAge">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                    Ranked Cancer type occurrences accross Age groups and Genders
+                  </button>
+                </h2>
+                
+                <div id="collapse4" class="accordion-collapse collapse show" aria-labelledby="rankingCancerAge" data-bs-parent="#dataAnalysis">
+                  <div class="accordion-body">
+                    <ranking-age-group-component />
+                  </div>
+                </div>
+              </div>
+              
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="rankingChargesCounty">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="true" aria-controls="collapse5">
+                    Average of total charges value accross hospital county
+                  </button>
+                </h2>
+                
+                <div id="collapse5" class="accordion-collapse collapse show" aria-labelledby="rankingChargesCounty" data-bs-parent="#dataAnalysis">
+                  <div class="accordion-body">
+                    <average-charge-county-component />
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            
+            <!-- Generical helper functions -->
+            <script src="dom_renderization.js"></script>
+            
+            <!-- Modules of analysis on data organized in components -->
+            <script src="components/mortality_risk.js"></script>
+            <script src="components/ethnicity.js"></script>
+            <script src="components/ranking_gender.js"></script>
+            <script src="components/ranking_age.js"></script>
+            <script src="components/avg_charges_county.js"></script>
+    
+        </div>
+        
+    </div>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    
+    
+  </body>
+</html>
